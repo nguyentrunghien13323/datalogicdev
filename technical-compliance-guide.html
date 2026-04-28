@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Technical Compliance Guide 2026 | datalogicdev</title>
+  <meta name="description" content="2026 technical compliance guide covering Apple App Store, Google Play, global data residency, anti-fraud controls, interaction compliance, and periodic audit operations.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://datalogicdev.com/technical-compliance-guide.html">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="cyber-noise" aria-hidden="true"></div>
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <header>
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html"><img src="images/logo.svg" alt="datalogicdev logo"></a>
+      <button class="menu-btn" aria-label="Toggle menu">Menu</button>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="advantages.html">Team Strengths</a></li>
+          <li><a href="news.html">Team Updates</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container legal-content">
+        <p class="kicker">Legal + Engineering Standard</p>
+        <h1>2026 Technical Compliance Execution Guide (Mandatory)</h1>
+        <p>This guide defines technical execution standards for app development, listing, and operation across Apple App Store, Google Play, and multi-region legal environments. It is designed to reduce policy rejection risk, platform penalties, and legal exposure while preserving practical implementation feasibility.</p>
+
+        <h2>Part I. Apple App Store (iOS) Compliance Requirements</h2>
+
+        <h3>1. Privacy Labels Accuracy</h3>
+        <ul>
+          <li>App Store Connect privacy labels must match actual data behavior and declared legal documents.</li>
+          <li>If data is linked to user/account behavior (for example device advertising identifiers and purchase records), corresponding linked-data categories must be declared.</li>
+          <li>Data collection purpose mapping (analytics, personalization, fraud prevention, core functionality) must remain consistent across App Store metadata, in-app disclosures, and policy pages.</li>
+        </ul>
+
+        <h3>2. ATT Enforcement (2026 Upgrade Baseline)</h3>
+        <ul>
+          <li>Before accessing IDFA, call requestTrackingAuthorization and request explicit user permission.</li>
+          <li>Authorization prompt text must clearly state purpose and cannot be deceptive.</li>
+          <li>If user denies tracking, all third-party SDK configuration must receive deny-state propagation (for example allow_tracking = false).</li>
+          <li>ATT denial must not be bypassed using alternative device fingerprinting channels that violate platform policy.</li>
+          <li>For iOS 18 adaptation, repeated harassment-style ATT prompts are prohibited; post-denial flows should rely on settings guidance only.</li>
+        </ul>
+
+        <h3>3. Additional iOS Technical Controls</h3>
+        <ul>
+          <li>No hidden functions, disguised payment paths, or review-evasion behavior.</li>
+          <li>Sensitive permission requests (photo library, contacts, microphone, location) require contextual purpose prompts and revocable authorization support.</li>
+          <li>IAP pages must display price, cycle, and renewal terms clearly, without dark patterns.</li>
+          <li>If AI-generated content exists, corresponding labels and App Store listing disclosures must be present.</li>
+        </ul>
+
+        <h2>Part II. Google Play (Android) Compliance Requirements</h2>
+
+        <h3>1. Data Safety Form Integrity</h3>
+        <ul>
+          <li>Google Play Data Safety declarations must accurately reflect collected, shared, and protected data categories.</li>
+          <li>Data in transit should be protected by modern HTTPS/TLS and sensitive stored data should use robust encryption (for example AES-256 or equivalent).</li>
+          <li>False declarations may lead to listing rejection, takedown, or account penalties.</li>
+        </ul>
+
+        <h3>2. SDK Transparency and Responsibility (2026 Upgrade)</h3>
+        <ul>
+          <li>Developers remain responsible for all third-party SDK behavior in production builds.</li>
+          <li>SDK inventory must be documented with SDK name, function, and data categories.</li>
+          <li>Outdated SDKs with unresolved privacy or security risks must be replaced or removed.</li>
+          <li>Android 14+ Privacy Sandbox compatibility and Android 15 behavior adaptation should be validated for applicable ad/measurement SDKs.</li>
+          <li>SDKs may not request unnecessary permissions unrelated to app core function.</li>
+        </ul>
+
+        <h3>3. Android 15 Operational Adaptation</h3>
+        <ul>
+          <li>Support sensitive field masking and OTP-obscure handling where relevant.</li>
+          <li>Implement screen sharing / casting awareness with visible indicators for sensitive interfaces.</li>
+          <li>If using Private Space compatibility paths, apply product-category-specific guidance and avoid unsafe defaults for critical medical contexts.</li>
+          <li>Ensure 64-bit architecture support and stable behavior on modern hardware profiles.</li>
+        </ul>
+
+        <h3>4. Ad and Subscription Policy Conformance</h3>
+        <ul>
+          <li>No malicious ad modules, forced-click tactics, or deceptive ad placement.</li>
+          <li>Rewarded ads should communicate reward conditions transparently.</li>
+          <li>Subscription products must include in-app management and cancellation access points.</li>
+        </ul>
+
+        <h2>Part III. 2026 Data Residency and Sovereignty Controls</h2>
+        <ul>
+          <li>Where legal thresholds are triggered, user data must be stored in compliant local infrastructure within required jurisdictions.</li>
+          <li>Cross-border transfer requires lawful transfer mechanisms (adequacy decision, SCC-type contracts, regulatory filings, or equivalent legal tools as required by local law).</li>
+          <li>Maintain a data residency ledger that records storage regions, transfer pathways, legal basis, and retention windows.</li>
+          <li>Perform periodic location audits for data stores and backup replicas.</li>
+          <li>Adjust architecture for newly tightened localization rules in countries/regions such as China, India, Saudi Arabia, Brazil, EU member states, Canada, Japan, and other jurisdictions that issue 2026 updates.</li>
+        </ul>
+
+        <h2>Part IV. Interaction Design Compliance Recommendations</h2>
+
+        <h3>1. Double Confirmation for High-Risk Actions</h3>
+        <ul>
+          <li>For high-value purchases (recommended threshold: single transaction >= USD/EUR 50), add a second in-app confirmation step before opening platform checkout.</li>
+          <li>For auto-renew subscriptions, show cycle/price/renewal terms in explicit secondary confirmation.</li>
+        </ul>
+
+        <h3>2. Mandatory Privacy Policy Reachability</h3>
+        <p>Privacy Policy access entry should appear in all of the following:</p>
+        <ul>
+          <li>App store listing page (prominent description section)</li>
+          <li>Launch or login gateway (with consent controls where legally required)</li>
+          <li>In-app Settings / About menu (persistent access)</li>
+        </ul>
+
+        <h3>3. Additional Interaction Compliance Points</h3>
+        <ul>
+          <li>Permission requests must include purpose explanations and revocation paths.</li>
+          <li>Rewarded video should clearly communicate watch-to-reward logic and legal skip behavior if allowed by campaign setting.</li>
+          <li>Provide complaint channels for privacy, ads, and UGC moderation issues with time-bounded handling commitments (recommended <= 7 business days for baseline handling response).</li>
+          <li>Display high-level ad serving logic, recommendation logic summaries, and data handling summaries to improve user transparency.</li>
+        </ul>
+
+        <h2>Part V. Compliance Risk Prevention and Periodic Review</h2>
+
+        <h3>1. Risk Prevention Measures</h3>
+        <ul>
+          <li>Pre-release legal and technical review of code paths, policy text, SDK stack, and user flows.</li>
+          <li>Continuous monitoring of legal and platform policy changes (EU DSA updates, US state law updates, iOS/Android policy shifts).</li>
+          <li>Third-party compliance management: partner due diligence, DPA enforcement, and rapid disengagement from non-compliant partners.</li>
+          <li>User rights operations pipeline with auditable records of access/correction/deletion/complaint handling.</li>
+          <li>Security hardening through encryption, least-privilege access, and recurring vulnerability/risk assessments.</li>
+          <li>Routine internal training for product, engineering, operations, and support teams.</li>
+        </ul>
+
+        <h3>2. Periodic Review Requirements</h3>
+        <ul>
+          <li>Review legal documents and implementation status at least every six months.</li>
+          <li>Audit SDK versions, ATT behavior, Privacy Sandbox readiness, and system-version compatibility.</li>
+          <li>Revalidate data collection, storage, transfer, and sharing maps against regional rules.</li>
+          <li>Update anti-fraud rules against emerging abuse patterns in ad and IAP pipelines.</li>
+          <li>Inspect request-handling SLAs and improve unresolved or delayed issue processes.</li>
+        </ul>
+
+        <h2>Contact Information</h2>
+        <p>Support: support@datalogicdev.com</p>
+        <p>Contact: contact@datalogicdev.com</p>
+        <p>Address: Hoa Lac High-Tech Park, Hanoi, Vietnam</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <h3>datalogicdev</h3>
+        <p>Address: Hoa Lac High-Tech Park, Hanoi, Vietnam</p>
+        <p>Email: support@datalogicdev.com | contact@datalogicdev.com</p>
+        <p class="footer-copy">© <span id="year"></span> datalogicdev. All rights reserved.</p>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <p><a href="privacy-policy.html">Privacy Policy</a></p>
+        <p><a href="terms-of-service.html">Terms of Service</a></p>
+        <p><a href="technical-compliance-guide.html">Technical Compliance Guide 2026</a></p>
+      </div>
+      <div>
+        <h3>Navigation</h3>
+        <p><a href="services.html">Services</a></p>
+        <p><a href="advantages.html">Team Strengths</a></p>
+        <p><a href="news.html">Team Updates</a></p>
+        <p><a href="contact.html">Contact</a></p>
+      </div>
+    </div>
+  </footer>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
